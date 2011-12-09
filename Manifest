@@ -1,0 +1,8 @@
+LICENSE.txt
+README
+README.rdoc
+Rakefile
+lib/xem.rb
+spec/spec_helper.rb
+spec/xem_spec.rb
+Manifest
