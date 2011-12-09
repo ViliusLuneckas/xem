@@ -15,12 +15,13 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "xem"
-  gem.homepage = "http://github.com/defunkt/xem"
+  gem.homepage = "https://github.com/ViliusLuneckas/xem/"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Simple 3D engine based on Glfw"
+  gem.description = "Simple 3D engine based on Glfw"
   gem.email = "vilius.luneckas@gmail.com"
   gem.authors = ["Vilius Luneckas"]
+  gem.version = "0.1.0"
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -38,7 +39,7 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
