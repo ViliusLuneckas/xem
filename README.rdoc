@@ -1,6 +1,6 @@
 = xem
 
-Description goes here.
+3D game engine for Ruby. Implemented using ruby-opengl and ruby-glfw (Glfw bindings for Ruby programming language) gems.
 
 == Contributing to xem
  
