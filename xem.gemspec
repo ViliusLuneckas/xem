@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.date = "2011-12-10"
   s.description = "Simple 3D engine based on Glfw"
   s.email = "vilius.luneckas@gmail.com"
-  s.extra_rdoc_files = ["LICENSE.txt", "README", "README.rdoc", "lib/xem.rb", "lib/xem/camera.rb", "lib/xem/constants.rb", "lib/xem/font_manager.rb", "lib/xem/helpers.rb", "lib/xem/keyboard.rb", "lib/xem/metrics.rb", "lib/xem/mouse.rb", "lib/xem/point.rb", "lib/xem/settings.rb", "lib/xem/version.rb", "lib/xem/xem.rb"]
-  s.files = ["LICENSE.txt", "README", "README.rdoc", "Rakefile", "examples/data/fonts/simple.tga", "examples/simple.rb", "lib/xem.rb", "lib/xem/camera.rb", "lib/xem/constants.rb", "lib/xem/font_manager.rb", "lib/xem/helpers.rb", "lib/xem/keyboard.rb", "lib/xem/metrics.rb", "lib/xem/mouse.rb", "lib/xem/point.rb", "lib/xem/settings.rb", "lib/xem/version.rb", "lib/xem/xem.rb", "spec/spec_helper.rb", "spec/xem/font_manager_spec.rb", "spec/xem/helpers_spec.rb", "spec/xem_spec.rb", "xem.gemspec", "Manifest"]
+  s.extra_rdoc_files = ["LICENSE.txt", "README", "README.rdoc", "lib/xem.rb", "lib/xem/camera.rb", "lib/xem/constants.rb", "lib/xem/font_manager.rb", "lib/xem/helpers.rb", "lib/xem/keyboard.rb", "lib/xem/metrics.rb", "lib/xem/mouse.rb", "lib/xem/point.rb", "lib/xem/settings.rb", "lib/xem/simple_draw.rb", "lib/xem/version.rb", "lib/xem/xem.rb"]
+  s.files = ["LICENSE.txt", "README", "README.rdoc", "Rakefile", "examples/data/fonts/simple.tga", "examples/movement.rb", "examples/simple.rb", "lib/xem.rb", "lib/xem/camera.rb", "lib/xem/constants.rb", "lib/xem/font_manager.rb", "lib/xem/helpers.rb", "lib/xem/keyboard.rb", "lib/xem/metrics.rb", "lib/xem/mouse.rb", "lib/xem/point.rb", "lib/xem/settings.rb", "lib/xem/simple_draw.rb", "lib/xem/version.rb", "lib/xem/xem.rb", "spec/spec_helper.rb", "spec/xem/font_manager_spec.rb", "spec/xem/helpers_spec.rb", "spec/xem_spec.rb", "xem.gemspec", "Manifest"]
   s.homepage = "https://github.com/ViliusLuneckas/xem/"
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Xem", "--main", "README"]
   s.require_paths = ["lib"]
