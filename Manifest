@@ -2,13 +2,17 @@ LICENSE.txt
 README
 README.rdoc
 Rakefile
+examples/data/fonts/simple.tga
+examples/simple.rb
 lib/xem.rb
 lib/xem/camera.rb
+lib/xem/constants.rb
 lib/xem/font_manager.rb
 lib/xem/helpers.rb
 lib/xem/keyboard.rb
 lib/xem/metrics.rb
 lib/xem/mouse.rb
+lib/xem/point.rb
 lib/xem/settings.rb
 lib/xem/version.rb
 lib/xem/xem.rb
