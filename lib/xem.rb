@@ -9,11 +9,13 @@ require_relative 'xem/keyboard'
 require_relative 'xem/settings'
 require_relative 'xem/font_manager'
 require_relative 'xem/helpers'
+require_relative 'xem/cache'
 require_relative 'xem/simple_draw'
 require_relative 'xem/xem'
 
 module Xem
   class Xem
     include Helpers
+    include Cache
   end
 end
