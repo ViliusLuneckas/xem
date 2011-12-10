@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Vilius Luneckas"]
-  s.date = "2011-12-09"
+  s.date = "2011-12-10"
   s.description = "Simple 3D engine based on Glfw"
   s.email = "vilius.luneckas@gmail.com"
-  s.extra_rdoc_files = ["LICENSE.txt", "README", "README.rdoc", "lib/xem.rb", "lib/xem/core.rb", "lib/xem/font_manager.rb", "lib/xem/helpers.rb", "lib/xem/version.rb", "lib/xem/xem.rb"]
-  s.files = ["LICENSE.txt", "README", "README.rdoc", "Rakefile", "lib/xem.rb", "lib/xem/core.rb", "lib/xem/font_manager.rb", "lib/xem/helpers.rb", "lib/xem/version.rb", "lib/xem/xem.rb", "spec/spec_helper.rb", "spec/xem/helpers_spec.rb", "spec/xem_spec.rb", "xem.gemspec", "Manifest"]
+  s.extra_rdoc_files = ["LICENSE.txt", "README", "README.rdoc", "lib/xem.rb", "lib/xem/camera.rb", "lib/xem/font_manager.rb", "lib/xem/helpers.rb", "lib/xem/keyboard.rb", "lib/xem/metrics.rb", "lib/xem/mouse.rb", "lib/xem/settings.rb", "lib/xem/version.rb", "lib/xem/xem.rb"]
+  s.files = ["LICENSE.txt", "README", "README.rdoc", "Rakefile", "lib/xem.rb", "lib/xem/camera.rb", "lib/xem/font_manager.rb", "lib/xem/helpers.rb", "lib/xem/keyboard.rb", "lib/xem/metrics.rb", "lib/xem/mouse.rb", "lib/xem/settings.rb", "lib/xem/version.rb", "lib/xem/xem.rb", "spec/spec_helper.rb", "spec/xem/font_manager_spec.rb", "spec/xem/helpers_spec.rb", "spec/xem_spec.rb", "xem.gemspec", "Manifest"]
   s.homepage = "https://github.com/ViliusLuneckas/xem/"
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Xem", "--main", "README"]
   s.require_paths = ["lib"]
