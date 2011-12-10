@@ -3,14 +3,16 @@ require 'glfw'
 
 module Xem
   module Helpers
-    def self.lock_configs(*gl_configs)
+    def lock_configs(*gl_configs)
       states = gl_configs.collect { |gl_config| Gl::glIsEnabled(gl_config) }
       yield
       states = gl_configs.collect { |gl_config| Gl::glIsEnabled(gl_config) }
       #gl_configs.zip(states).each { |gl_config, state| state ? Gl::glEnable(gl_config) : Gl::glDisable(gl_config) }
     end
 
-    def self.load_texture(filename, load_options = nil, options = {})
+    # module_function :lock_configs
+
+    def load_texture(filename, load_options = nil, options = {})
       load_options = load_options ? load_options | Glfw::GLFW_BUILD_MIPMAPS_BIT : Glfw::GLFW_BUILD_MIPMAPS_BIT
       texture_id = Gl::glGenTextures(1).first
       Gl::glBindTexture(Gl::GL_TEXTURE_2D, texture_id)
@@ -27,5 +29,17 @@ module Xem
         -1
       end
     end
+
+    #module_function :load_texture
+
+    def color(hex_code)
+      [
+          hex_code[0, 2].hex/255.0,
+          hex_code[2, 2].hex/255.0,
+          hex_code[4, 2].hex/255.0
+      ]
+    end
+
+    # module_function :color
   end
 end
