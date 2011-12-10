@@ -14,9 +14,13 @@ xem.enable_movement
 
 xem.render do
 
-  xem.axis
+  xem.cache do
+    xem.axis
+  end
 
-  xem.wire_floor 50, 50
+  xem.cache do
+    xem.wire_floor 50, 50
+  end
 
   xem.print([10, 10], xem.color('ff0000'), "Fps: #{"%.2f" % xem.fps}", 1.0)
 

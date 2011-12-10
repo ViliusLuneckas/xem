@@ -5,7 +5,9 @@ Rakefile
 examples/data/fonts/simple.tga
 examples/movement.rb
 examples/simple.rb
+examples/using_cache.rb
 lib/xem.rb
+lib/xem/cache.rb
 lib/xem/camera.rb
 lib/xem/constants.rb
 lib/xem/font_manager.rb

@@ -1,11 +1,12 @@
 module Xem
   class Metrics
-    FPS_RECALCULATE_INTERVAL = 0.2
+    FPS_RECALCULATE_INTERVAL = 0.4
 
     attr_reader :frames, :fps
 
     def initialize
-      @fps = @last_time_frames = @frames = 0
+      @last_time_frames = @frames = 0
+      @fps = 60
       @last_time = Glfw::glfwGetTime
     end
 
