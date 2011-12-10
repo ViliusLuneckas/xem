@@ -21,6 +21,7 @@ module Xem
       glfwSetKeyCallback(method(:keyboard_event).to_proc)
       glfwSetMousePosCallback(method(:mouse_move_event).to_proc)
       enable_3D
+      fix_configs
     end
 
     def render
@@ -34,12 +35,24 @@ module Xem
     end
 
     def clear_color=(rgb)
-      @settings.set(:clear_color, rgb)
+      settings.set(:clear_color, rgb)
       glClearColor(*rgb, 1.0)
+    end
+
+    def enable_movement
+      settings.set(:movement, true)
+    end
+
+    def disable_movement
+      settings.set(:movement, false)
     end
 
     def shutdown
       @alive = false
+    end
+
+    def alive
+      @alive && glfwGetWindowParam(GLFW_OPENED)
     end
 
     protected
@@ -47,7 +60,7 @@ module Xem
     def initialize(options = {})
       raise "Unable to initialize GLFW" unless glfwInit
 
-      @video_mode = glfwGetVideoModes[-7]
+      @video_mode = glfwGetVideoModes.first
       @screen_type = [GLFW_WINDOW, GLFW_FULLSCREEN].first
 
       @metrics = Metrics.new
@@ -76,6 +89,7 @@ module Xem
 
     def end_rendering
       glfwSwapBuffers
+      keyboard.camera_hooks if settings.get(:movement)
       metrics.end_rendering
     end
 
@@ -121,15 +135,10 @@ module Xem
       glEnable(GL_NORMALIZE)
       glEnable(GL_LIGHTING)
       ::Xem::Constants::GL_HINTS.each { |hint| glHint(hint, hints) }
+    end
 
-      #glFogi(GL_FOG_MODE, @fog_mode) # Fog Mode
-      #glFogfv(GL_FOG_COLOR, @fog_color) #Set Fog Color
-      #glFogf(GL_FOG_DENSITY, 0.003) # How Dense Will The Fog Be
-      #glFogf(GL_FOG_START, 20.0) # Fog Start Depth     #
-      #glFogf(GL_FOG_END, 100) # Fog End Dept
-      #glHint(GL_FOG_HINT, GL_NICEST) # Fog Hint Value
-      #
-      #@options[:fog] ? glEnable(GL_FOG) : glDisable(GL_FOG)
+    def fix_configs
+      mouse.ensure_lock
     end
   end
 end

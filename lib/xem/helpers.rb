@@ -10,6 +10,18 @@ module Xem
       #gl_configs.zip(states).each { |gl_config, state| state ? Gl::glEnable(gl_config) : Gl::glDisable(gl_config) }
     end
 
+    def in_separate_matrix
+      glPushMatrix
+      yield
+      glPopMatrix
+    end
+
+    def gl_draw(method = GL_QUADS)
+      glBegin(method)
+      yield
+      glEnd
+    end
+
     # module_function :lock_configs
 
     def load_texture(filename, load_options = nil, options = {})
