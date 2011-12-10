@@ -6,7 +6,7 @@ xem = Xem::Xem.instance # gets instance of xem 3D engine
 
 xem.clear_color = xem.color('abcabc')
 
-xem.font_file = "simple.tga" # equals to xem.font_file = File.join("data", "fonts", "simple.tga")
+xem.font_file = "simple.tga"
 
 xem.unlock_mouse
 

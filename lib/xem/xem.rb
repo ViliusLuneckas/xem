@@ -88,6 +88,7 @@ module Xem
     end
 
     def end_rendering
+      console.draw if settings.get(:console) and console.visible?
       glfwSwapBuffers
       keyboard.camera_hooks if settings.get(:movement)
       metrics.end_rendering

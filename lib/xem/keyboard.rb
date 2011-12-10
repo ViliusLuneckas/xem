@@ -23,6 +23,8 @@ module Xem
 
     def respond_to(key, action)
       case key
+        when '`'
+          xem.console.toggle if xem.settings.get(:console) and action.zero?
         when 257
           xem.shutdown
         else
