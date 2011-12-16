@@ -19,6 +19,7 @@ module Xem
       glfwSetWindowTitle(settings.get(:title))
       glfwSetWindowSizeCallback(method(:window_resize_event).to_proc)
       glfwSetKeyCallback(method(:keyboard_event).to_proc)
+      glfwSetCharCallback(method(:keyboard_ascii_event).to_proc)
       glfwSetMousePosCallback(method(:mouse_move_event).to_proc)
       enable_3D
       fix_configs
@@ -26,6 +27,7 @@ module Xem
 
     def render
       show unless settings.get(:visible)
+      glClearColor(*settings.get(:clear_color), 1.0)
 
       while alive
         begin_rendering
@@ -36,7 +38,8 @@ module Xem
 
     def clear_color=(rgb)
       settings.set(:clear_color, rgb)
-      glClearColor(*rgb, 1.0)
+      # ruby-1.9.2-p290 is crashing here:
+      # glClearColor(*rgb, 1.0)
     end
 
     def enable_movement
@@ -55,6 +58,13 @@ module Xem
       @alive && glfwGetWindowParam(GLFW_OPENED)
     end
 
+    def toggle_gl_hints
+      hints = settings.get(:gl_hints)
+      hints = hints == GL_NICEST ? GL_FASTEST : GL_NICEST
+      settings.set(:gl_hints, hints)
+      ::Xem::Constants::GL_HINTS.each { |hint| glHint(hint, hints) }
+    end
+
     protected
 
     def initialize(options = {})
@@ -69,6 +79,7 @@ module Xem
 
       @settings = Settings.new
       settings.set(:visible, false)
+      settings.set(:clear_color, [0.7, 0.8, 0.9])
 
       @mouse = Mouse.new(self)
 
@@ -123,6 +134,10 @@ module Xem
       keyboard.event(key, action)
     end
 
+    def keyboard_ascii_event(key, action)
+      keyboard.ascii_event(key, action)
+    end
+
     def enable_3D(hints = GL_NICEST)
       glEnable(GL_TEXTURE_2D)
       glShadeModel(GL_SMOOTH)
@@ -135,6 +150,7 @@ module Xem
       glEnable(GL_ALPHA_TEST)
       glEnable(GL_NORMALIZE)
       glEnable(GL_LIGHTING)
+      settings.set(:gl_hints, hints)
       ::Xem::Constants::GL_HINTS.each { |hint| glHint(hint, hints) }
     end
 
@@ -143,4 +159,5 @@ module Xem
     end
   end
 end
+
 

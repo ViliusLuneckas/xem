@@ -10,8 +10,16 @@ xem.font_file = "simple.tga"
 
 xem.enable_console
 
-xem.unlock_mouse
+xem.lock_mouse
+
+xem.enable_movement
 
 xem.render do
+
+  xem.cache do
+    xem.axis
+    xem.wire_floor 50, 50
+  end
+
   xem.print([:center, :center], xem.color('000000'), "Type ` to open console", 0.65)
 end

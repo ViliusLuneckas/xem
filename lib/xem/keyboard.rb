@@ -12,6 +12,12 @@ module Xem
       respond_to(key, action)
     end
 
+    def ascii_event(key, action)
+      ascii_key = [key].pack('c*')
+      xem.console.ascii_press(ascii_key) if xem.settings.get(:console) and xem.console.visible? and not action.zero?
+      xem.console.toggle if ascii_key == '`' and xem.settings.get(:console) and not action.zero? 
+    end
+
     def camera_hooks
       xem.camera.move(:forward) if keys['W'] == 1 || keys[283] == 1
       xem.camera.move(:backward) if keys['S'] == 1 || keys[284] == 1
@@ -22,9 +28,8 @@ module Xem
     protected
 
     def respond_to(key, action)
+      xem.console.non_ascii_press(key) if xem.settings.get(:console) and xem.console.visible? and not key.is_a?(String) and not action.zero?
       case key
-        when '`'
-          xem.console.toggle if xem.settings.get(:console) and action.zero?
         when 257
           xem.shutdown
         else
