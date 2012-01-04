@@ -6,7 +6,7 @@ module Xem
       lock_configs(GL_LIGHTING, GL_TEXTURE_2D) do
         glDisable(GL_LIGHTING)
         glDisable(GL_TEXTURE_2D)
-        glColor3f(*color('ffffff'))
+        glColor3f(*color(options[:color] || 'ffffff'))
         gl_draw(GL_LINES) do
           (0..x_n).each do |x|
             (0..z_n).each do |z|

@@ -22,8 +22,6 @@ module Xem
       glEnd
     end
 
-    # module_function :lock_configs
-
     def load_texture(filename, load_options = nil, options = {})
       load_options = load_options ? load_options | Glfw::GLFW_BUILD_MIPMAPS_BIT : Glfw::GLFW_BUILD_MIPMAPS_BIT
       texture_id = Gl::glGenTextures(1).first
@@ -42,8 +40,6 @@ module Xem
       end
     end
 
-    #module_function :load_texture
-
     def color(hex_code)
       [
           hex_code[0, 2].hex/255.0,
@@ -52,6 +48,42 @@ module Xem
       ]
     end
 
-    # module_function :color
+    def path_for(filename, type)
+      paths = case type
+                when :image
+                  root = Dir.pwd
+                  ['', '.tga'].collect do |extension|
+                    [File.join(root, filename + extension),
+                     File.join(root, "data", "images", filename + extension)]
+                  end
+                else
+                  []
+              end.flatten
+      paths.detect { |path| File.exists?(path) }
+    end
+
+    def gl_textured(texture)
+      lock_configs(GL_TEXTURE_2D) do
+        glEnable(GL_TEXTURE_2D)
+        glBindTexture(GL_TEXTURE_2D, texture)
+        yield
+      end
+    end
+
+    def inverse_box(w, h, l)
+      glRotatef(180, 1.0, 0, 0)
+      glTranslatef(0, -h, -l)
+      gl_draw do
+        [:forward, :left, :right, :backward, :down].each do |side|
+          glNormal3f(*side.to_v.inverse)
+          4.times do |i|
+            vertex = ::Xem::Constants::BOX[side][i]
+            corrected = [w, h, l].zip(vertex).map { |s, v| s * v }
+            glTexCoord2d(*::Xem::Constants::SKY_BOX_TEXTURE_COORDS[side][i])
+            glVertex3f(*corrected)
+          end
+        end
+      end
+    end
   end
 end

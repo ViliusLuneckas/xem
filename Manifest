@@ -3,10 +3,13 @@ README
 README.rdoc
 Rakefile
 examples/data/fonts/simple.tga
+examples/data/images/interstellar.tga
 examples/movement.rb
 examples/simple.rb
+examples/sky_box.rb
 examples/using_cache.rb
 examples/using_integrated_console.rb
+lib/ext/hacks.rb
 lib/xem.rb
 lib/xem/cache.rb
 lib/xem/camera.rb
@@ -20,6 +23,7 @@ lib/xem/mouse.rb
 lib/xem/point.rb
 lib/xem/settings.rb
 lib/xem/simple_draw.rb
+lib/xem/sky_box.rb
 lib/xem/version.rb
 lib/xem/xem.rb
 spec/spec_helper.rb

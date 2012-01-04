@@ -22,7 +22,7 @@ module Xem
       glfwSetCharCallback(method(:keyboard_ascii_event).to_proc)
       glfwSetMousePosCallback(method(:mouse_move_event).to_proc)
       enable_3D
-      fix_configs
+      after_show
     end
 
     def render
@@ -38,8 +38,6 @@ module Xem
 
     def clear_color=(rgb)
       settings.set(:clear_color, rgb)
-      # ruby-1.9.2-p290 is crashing here:
-      # glClearColor(*rgb, 1.0)
     end
 
     def enable_movement
@@ -70,7 +68,7 @@ module Xem
     def initialize(options = {})
       raise "Unable to initialize GLFW" unless glfwInit
 
-      @video_mode = glfwGetVideoModes.first
+      @video_mode = glfwGetVideoModes.last
       @screen_type = [GLFW_WINDOW, GLFW_FULLSCREEN].first
 
       @metrics = Metrics.new
@@ -96,13 +94,21 @@ module Xem
       glRotatef(camera.angle.x, 1.0, 0.0, 0.0)
       glRotatef(camera.angle.y, 0.0, 1.0, 0.0)
       glTranslated(-camera.position.x, -camera.position.y, -camera.position.z)
+      render_extensions
+    end
+
+    # method for chaining
+    def render_extensions
     end
 
     def end_rendering
-      console.draw if settings.get(:console) and console.visible?
       glfwSwapBuffers
-      keyboard.camera_hooks if settings.get(:movement)
+      keyboard.camera_hooks if keyboard and settings.get(:movement)
       metrics.end_rendering
+    end
+
+    def after_show
+      fix_configs
     end
 
     def clear
@@ -131,11 +137,11 @@ module Xem
     end
 
     def keyboard_event(key, action)
-      keyboard.event(key, action)
+      keyboard.event(key, action) if keyboard
     end
 
     def keyboard_ascii_event(key, action)
-      keyboard.ascii_event(key, action)
+      keyboard.ascii_event(key, action) if keyboard
     end
 
     def enable_3D(hints = GL_NICEST)
@@ -145,7 +151,7 @@ module Xem
       glClearColor(*settings.get(:clear_color), 1.0)
       glClearDepth(1.0)
       glEnable(GL_DEPTH_TEST)
-      glEnable(GL_CULL_FACE)
+      #glEnable(GL_CULL_FACE)
       glDepthFunc(GL_LEQUAL)
       glEnable(GL_ALPHA_TEST)
       glEnable(GL_NORMALIZE)

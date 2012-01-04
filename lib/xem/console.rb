@@ -94,5 +94,11 @@ module Xem
       settings.set(:console, true)
       @console ||= Console.new(self)
     end
+
+    def render_console
+      console.draw if settings.get(:console) and console.visible?
+    end
+
+    chain :render_console, :render_extensions
   end
 end
