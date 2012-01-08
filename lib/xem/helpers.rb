@@ -39,11 +39,6 @@ module Xem
       end
     end
 
-    def color(hex_code)
-      @@colors ||= {}
-      @@colors[hex_code] ||= [ hex_code[0, 2].hex/255.0, hex_code[2, 2].hex/255.0, hex_code[4, 2].hex/255.0 ]
-    end
-
     def path_for(filename, type)
       paths = case type
                 when :image
@@ -76,6 +71,20 @@ module Xem
             vertex = ::Xem::Constants::BOX[side][i]
             corrected = [w, h, l].zip(vertex).map { |s, v| s * v }
             glTexCoord2d(*::Xem::Constants::SKY_BOX_TEXTURE_COORDS[side][i])
+            glVertex3f(*corrected)
+          end
+        end
+      end
+    end
+    
+    def box(w, h, l, options = {})
+      gl_draw do
+        [:forward, :left, :right, :backward, :up, :down].each do |side|
+          glNormal3f(*side.to_n)
+          4.times do |i|
+            vertex = ::Xem::Constants::BOX[side][i]
+            corrected = [w, h, l].zip(vertex).map { |s, v| s * v }
+            glTexCoord2d(*::Xem::Constants::SKY_BOX_TEXTURE_COORDS[side][i]) if options[:texture]
             glVertex3f(*corrected)
           end
         end

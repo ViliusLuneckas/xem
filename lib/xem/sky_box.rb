@@ -23,7 +23,7 @@ module Xem
           glDisable(GL_LIGHTING)
           glEnable(GL_TEXTURE_2D)
           glBindTexture(GL_TEXTURE_2D, texture)
-          glColor3f(*xem.color('eeeeee'))
+          glColor3f(*:_eeeeee.color)
           w = h = l = 512 * scale
           sky_position = [xem.camera.position.x - w/2, xem.camera.position.y - h/2, xem.camera.position.z - l/2]
           glTranslated(*sky_position)

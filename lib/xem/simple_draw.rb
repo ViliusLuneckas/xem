@@ -5,7 +5,7 @@ module Xem
       lock_configs(GL_LIGHTING, GL_TEXTURE_2D) do
         glDisable(GL_LIGHTING)
         glDisable(GL_TEXTURE_2D)
-        glColor3f(*color(options[:color] || 'ffffff'))
+        glColor3f(*(options[:color] || :_ffffff).color)
         gl_draw(GL_LINES) do
           (0..x_n).each do |x|
             (0..z_n).each do |z|
@@ -45,6 +45,16 @@ module Xem
           end
           glLineWidth(1)
         end
+      end
+    end
+
+
+    def cube(size, options = {})
+      lock_configs(GL_TEXTURE_2D, GL_CULL_FACE) do
+        glDisable(GL_CULL_FACE)
+        glDisable(GL_TEXTURE_2D)
+        glColor3f(*(options[:color] || :_ffffff).color)
+        box(size, size, size)
       end
     end
   end

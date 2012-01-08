@@ -39,10 +39,10 @@ module Xem
       space_between_lines = 20
       lines = @textbuf.lines.to_a.reverse.first(max_visible_lines).reverse
       lines.each do |line|
-        xem.print([0, y], xem.color('000000'), line.chomp, 0.6)
+        xem.print([0, y], :_000000, line.chomp, 0.6)
         y += space_between_lines
       end
-      xem.print([0, y - space_between_lines/2], xem.color('000000'), "-" * chars_per_line, 0.6)
+      xem.print([0, y - space_between_lines/2], :_000000, "-" * chars_per_line, 0.6)
     end
 
     def ascii_press(key)
@@ -100,5 +100,10 @@ module Xem
     end
 
     chain :render_console, :render_extensions
-  end
+
+    def camera_movement
+      console_disables = (not console.nil?) && console.visible?
+      keyboard.camera_hooks if keyboard and settings.get(:movement) and not console_disables
+    end
+  end  
 end

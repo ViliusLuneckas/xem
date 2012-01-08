@@ -1,6 +1,6 @@
 module Xem
   class Metrics
-    FPS_RECALCULATE_INTERVAL = 0.4
+    FPS_RECALCULATE_INTERVAL = 0.1
 
     attr_reader :frames, :fps
 

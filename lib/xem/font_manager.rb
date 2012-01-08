@@ -24,6 +24,8 @@ module Xem
 
     def print(xy, rgb, text, scale = 1.0)
       build unless @built
+      rgb = rgb.to_sym.color if rgb.is_a?(String)
+      rgb = rgb.color if rgb.is_a?(Symbol)
       glMatrixMode(GL_PROJECTION)
       glPushMatrix();
       glLoadIdentity();
@@ -33,6 +35,7 @@ module Xem
       glLoadIdentity();
 
       set = 1 #???
+    
       glColor4f(*rgb, 1.0)
 
       xem.lock_configs(GL_LIGHTING, GL_TEXTURE_2D, GL_BLEND) do
@@ -51,6 +54,7 @@ module Xem
       glPopMatrix()
       glMatrixMode(GL_PROJECTION)
       glPopMatrix()
+      true
     end
 
     protected

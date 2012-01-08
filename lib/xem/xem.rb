@@ -27,7 +27,7 @@ module Xem
 
     def render
       show unless settings.get(:visible)
-      glClearColor(*settings.get(:clear_color), 1.0)
+      glClearColor(*settings.get(:clear_color).color, 1.0)
 
       while alive
         begin_rendering
@@ -77,7 +77,7 @@ module Xem
 
       @settings = Settings.new
       settings.set(:visible, false)
-      settings.set(:clear_color, [0.7, 0.8, 0.9])
+      settings.set(:clear_color, :_B2CCFF)
 
       @mouse = Mouse.new(self)
 
@@ -103,8 +103,12 @@ module Xem
 
     def end_rendering
       glfwSwapBuffers
-      keyboard.camera_hooks if keyboard and settings.get(:movement)
+      camera_movement
       metrics.end_rendering
+    end
+
+    def camera_movement
+      keyboard.camera_hooks if keyboard and settings.get(:movement)
     end
 
     def after_show
@@ -147,13 +151,14 @@ module Xem
     def enable_3D(hints = GL_NICEST)
       glEnable(GL_TEXTURE_2D)
       glShadeModel(GL_SMOOTH)
-      settings.set(:clear_color, [0, 0, 0]) unless settings.get(:clear_color)
-      glClearColor(*settings.get(:clear_color), 1.0)
+      settings.set(:clear_color, :_FFFFFF) unless settings.get(:clear_color)
+      glClearColor(*settings.get(:clear_color).color, 1.0)
       glClearDepth(1.0)
       glEnable(GL_DEPTH_TEST)
       glEnable(GL_CULL_FACE)
       glDepthFunc(GL_LEQUAL)
       glEnable(GL_ALPHA_TEST)
+      glEnable(GL_COLOR_MATERIAL)
       glEnable(GL_NORMALIZE)
       glEnable(GL_LIGHTING)
       settings.set(:gl_hints, hints)

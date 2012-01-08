@@ -70,4 +70,11 @@ describe Symbol do
       :any_random_symbol.to_n.should == [0, 0, 0]
     end
   end
+
+  describe "convertion to color" do
+    it "should convert to array" do
+      :_ff00ff.color.should == [1.0, 0.0, 1.0]
+      :$0000ff.color.should == [0.0, 0.0, 1.0]
+    end
+  end
 end

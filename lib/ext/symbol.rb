@@ -23,4 +23,17 @@ class Symbol
   def to_n
     to_v
   end
+
+  def color
+    @@colors ||= {}
+    @@colors[self] ||= calculate_color
+  end
+
+  protected
+
+  # :xff00ff -> [1.0, 0.0, 1.0], x - any character
+  def calculate_color
+    hex_code = to_s
+    [ hex_code[1, 2].hex / 255.0, hex_code[3, 2].hex / 255.0, hex_code[5, 2].hex / 255.0 ]
+  end
 end

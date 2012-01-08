@@ -25,5 +25,6 @@ require_relative 'xem/settings'
 require_relative 'xem/font_manager'
 require_relative 'xem/console'
 require_relative 'xem/simple_draw'
-
+require_relative 'xem/shapes/shapes.rb'
+require_relative 'xem/collision_machine.rb'
 

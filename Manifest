@@ -2,6 +2,7 @@ LICENSE.txt
 README
 README.rdoc
 Rakefile
+examples/collisions.rb
 examples/data/fonts/simple.tga
 examples/data/images/interstellar.tga
 examples/movement.rb
@@ -16,6 +17,7 @@ lib/ext/symbol.rb
 lib/xem.rb
 lib/xem/cache.rb
 lib/xem/camera.rb
+lib/xem/collision_machine.rb
 lib/xem/console.rb
 lib/xem/constants.rb
 lib/xem/font_manager.rb
@@ -25,13 +27,18 @@ lib/xem/metrics.rb
 lib/xem/mouse.rb
 lib/xem/point.rb
 lib/xem/settings.rb
+lib/xem/shapes/cube.rb
+lib/xem/shapes/shapes.rb
 lib/xem/simple_draw.rb
 lib/xem/sky_box.rb
 lib/xem/version.rb
 lib/xem/xem.rb
 spec/ext/array_spec.rb
 spec/ext/symbol_spec.rb
+spec/fixtures/simple.tga
 spec/spec_helper.rb
+spec/xem/collision_machine_spec.rb
+spec/xem/font_manager_spec.rb
 spec/xem/helpers_spec.rb
 xem.gemspec
 Manifest

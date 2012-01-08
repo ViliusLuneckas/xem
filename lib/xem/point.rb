@@ -9,6 +9,10 @@ class Point
     "(#{'%.2f' % x}; #{'%.2f' % y}; #{'%.2f' % z})"
   end
 
+  def to_a
+    [x, y, z]
+  end
+
   def -(other)
     Point.new(x - other.x, y - other.y, z - other.z)
   end

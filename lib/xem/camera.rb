@@ -28,7 +28,7 @@ module Xem
     end
 
     def step
-      speed / xem.fps
+      speed.to_f / xem.fps
     end
 
     def move(direction)

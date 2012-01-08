@@ -16,15 +16,12 @@ xem.camera.speed = 15 # set camera movement speed
 xem.render do
 
   xem.cache do
-    xem.wire_floor 50, 50, :color => '0abc00'
+    xem.wire_floor 50, 50, color: :_0abc00
   end
 
   xem.sky.draw
 
-
-  xem.print([10, 10], xem.color('ff0000'), "Fps: #{"%.2f" % xem.fps}", 1.0)
-
-  xem.print([10, 40], xem.color('000000'), "Camera angle: #{xem.camera.angle}", 0.7)
-  xem.print([10, 60], xem.color('000000'), "Camera position: #{xem.camera.position}", 0.7)
+  xem.print([5, 10], :_000000, "Camera angle: #{xem.camera.angle}", 0.7)
+  xem.print([5, 40], :_000000, "Camera position: #{xem.camera.position}", 0.7)
 
 end

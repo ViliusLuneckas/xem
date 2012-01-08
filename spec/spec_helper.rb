@@ -10,6 +10,16 @@ require 'glfw'
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
+# open window once
+Xem::Xem.instance.show
+
 RSpec.configure do |config|
   config.mock_with :mocha
+  config.before(:all) do 
+    @xem = Xem::Xem.instance
+  end
+
+  config.after(:all) do
+    Xem::Xem.instance.shutdown
+  end
 end

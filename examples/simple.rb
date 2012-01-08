@@ -9,9 +9,5 @@ xem.font_file = "simple.tga" # equals to xem.font_file = File.join("data", "font
 xem.unlock_mouse
 
 xem.render do
-
-  xem.print([10, 10], xem.color('ff0000'), "Fps: #{"%.2f" % xem.fps}", 1.0)
-
-  xem.print([10, :center], xem.color('ff0000'), "- simple app -", 1.0)
-
+  xem.print([:center, :center], :_ff0000, "- simple app -", 1.0)
 end
