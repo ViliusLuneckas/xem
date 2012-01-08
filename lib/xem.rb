@@ -2,7 +2,7 @@ require 'opengl'
 require 'glfw'
 
 
-require_relative 'ext/hacks'
+require_relative 'ext/ext.rb'
 require_relative 'xem/constants'
 require_relative 'xem/helpers'
 require_relative 'xem/cache'

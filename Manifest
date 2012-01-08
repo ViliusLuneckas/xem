@@ -9,7 +9,10 @@ examples/simple.rb
 examples/sky_box.rb
 examples/using_cache.rb
 examples/using_integrated_console.rb
-lib/ext/hacks.rb
+lib/ext/array.rb
+lib/ext/ext.rb
+lib/ext/extendings.rb
+lib/ext/symbol.rb
 lib/xem.rb
 lib/xem/cache.rb
 lib/xem/camera.rb
@@ -26,9 +29,9 @@ lib/xem/simple_draw.rb
 lib/xem/sky_box.rb
 lib/xem/version.rb
 lib/xem/xem.rb
+spec/ext/array_spec.rb
+spec/ext/symbol_spec.rb
 spec/spec_helper.rb
-spec/xem/font_manager_spec.rb
 spec/xem/helpers_spec.rb
-spec/xem_spec.rb
 xem.gemspec
 Manifest

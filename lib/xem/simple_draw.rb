@@ -1,6 +1,5 @@
 module Xem
   class Xem
-
     def wire_floor(x_n, z_n, options = {})
       square_size = options[:square_size] || 1
       lock_configs(GL_LIGHTING, GL_TEXTURE_2D) do

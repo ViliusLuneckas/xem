@@ -6,8 +6,7 @@ module Xem
     def lock_configs(*gl_configs)
       states = gl_configs.collect { |gl_config| Gl::glIsEnabled(gl_config) }
       yield
-      states = gl_configs.collect { |gl_config| Gl::glIsEnabled(gl_config) }
-      #gl_configs.zip(states).each { |gl_config, state| state ? Gl::glEnable(gl_config) : Gl::glDisable(gl_config) }
+      gl_configs.zip(states).each { |cfg, state| state ? Gl::glEnable(cfg) : Gl::glDisable(cfg) }
     end
 
     def in_separate_matrix
@@ -41,11 +40,8 @@ module Xem
     end
 
     def color(hex_code)
-      [
-          hex_code[0, 2].hex/255.0,
-          hex_code[2, 2].hex/255.0,
-          hex_code[4, 2].hex/255.0
-      ]
+      @@colors ||= {}
+      @@colors[hex_code] ||= [ hex_code[0, 2].hex/255.0, hex_code[2, 2].hex/255.0, hex_code[4, 2].hex/255.0 ]
     end
 
     def path_for(filename, type)
@@ -75,7 +71,7 @@ module Xem
       glTranslatef(0, -h, -l)
       gl_draw do
         [:forward, :left, :right, :backward, :down].each do |side|
-          glNormal3f(*side.to_v.inverse)
+          glNormal3f(*side.to_n.inverse)
           4.times do |i|
             vertex = ::Xem::Constants::BOX[side][i]
             corrected = [w, h, l].zip(vertex).map { |s, v| s * v }

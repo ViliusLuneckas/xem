@@ -151,7 +151,7 @@ module Xem
       glClearColor(*settings.get(:clear_color), 1.0)
       glClearDepth(1.0)
       glEnable(GL_DEPTH_TEST)
-      #glEnable(GL_CULL_FACE)
+      glEnable(GL_CULL_FACE)
       glDepthFunc(GL_LEQUAL)
       glEnable(GL_ALPHA_TEST)
       glEnable(GL_NORMALIZE)

@@ -18,7 +18,8 @@ module Xem
     def draw
       scale = 0.25
       xem.in_separate_matrix do
-        xem.lock_configs(GL_LIGHTING, GL_TEXTURE_2D) do
+        xem.lock_configs(GL_LIGHTING, GL_TEXTURE_2D, GL_CULL_FACE) do
+          glDisable(GL_CULL_FACE)
           glDisable(GL_LIGHTING)
           glEnable(GL_TEXTURE_2D)
           glBindTexture(GL_TEXTURE_2D, texture)

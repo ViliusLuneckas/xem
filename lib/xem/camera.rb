@@ -17,6 +17,7 @@ module Xem
 
     def look_around(diff)
       @angle += diff * look_around_speed
+      @angle.y %= 360
       unless vertical_angle.include?(angle.x)
         angle.x = if angle.x > 0 and angle.x > vertical_angle.last
           vertical_angle.last

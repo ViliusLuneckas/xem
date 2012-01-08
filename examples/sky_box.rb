@@ -2,21 +2,23 @@
 
 require_relative '../lib/xem'
 
-xem = Xem::Xem.instance # gets instance of xem 3D engine
+xem = Xem::Xem.instance 
 
-xem.font_file = "simple.tga" # equals to xem.font_file = File.join("data", "fonts", "simple.tga")
+xem.font_file = "simple.tga" 
 #
 xem.sky = "interstellar" # interstellar.tga texture from data/images will be used for sky box
 
 xem.lock_mouse
 
 xem.enable_movement
+xem.camera.speed = 15 # set camera movement speed
 
 xem.render do
 
   xem.cache do
     xem.wire_floor 50, 50, :color => '0abc00'
   end
+
   xem.sky.draw
 
 
