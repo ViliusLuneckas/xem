@@ -62,6 +62,20 @@ describe Xem::CollisionMachine do
 
       subject.should be_overlapping(rectangle_1, rectangle_2)
     end
+
+    it "should return true" do
+       rectangle_1 = {
+        top_left: {x: 4, z: 4},
+        bottom_right: {x: 3, z: 5}
+      }
+
+      rectangle_2 = {
+        top_left: {x: 4.52, z: 3.79},
+        bottom_right: {x: 2.52, z: 5.79}
+      }
+
+      subject.should be_overlapping(rectangle_1, rectangle_2)     
+    end
   end
 
   describe "#touches?" do

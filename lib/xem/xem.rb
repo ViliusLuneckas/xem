@@ -40,14 +40,6 @@ module Xem
       settings.set(:clear_color, rgb)
     end
 
-    def enable_movement
-      settings.set(:movement, true)
-    end
-
-    def disable_movement
-      settings.set(:movement, false)
-    end
-
     def shutdown
       @alive = false
     end

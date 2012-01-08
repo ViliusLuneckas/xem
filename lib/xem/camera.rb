@@ -3,7 +3,7 @@ require_relative 'point'
 module Xem
   class Camera
     attr_reader :xem, :position, :angle, :view_distance, :look_around_speed, :vertical_angle
-    attr_accessor :speed
+    attr_accessor :speed                 
 
     def initialize(xem)
       @xem = xem
@@ -54,6 +54,16 @@ module Xem
 
     def make_move(diff)
       @position += diff
+    end
+  end
+  
+  class Xem
+    def enable_movement(options = {})
+      settings.set(:movement, true)
+    end
+
+    def disable_movement
+      settings.set(:movement, false)
     end
   end
 end

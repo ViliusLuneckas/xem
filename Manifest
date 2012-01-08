@@ -6,6 +6,7 @@ examples/collisions.rb
 examples/data/fonts/simple.tga
 examples/data/images/interstellar.tga
 examples/movement.rb
+examples/movement_with_collisions.rb
 examples/simple.rb
 examples/sky_box.rb
 examples/using_cache.rb
@@ -37,7 +38,9 @@ spec/ext/array_spec.rb
 spec/ext/symbol_spec.rb
 spec/fixtures/simple.tga
 spec/spec_helper.rb
+spec/xem/camera_spec.rb
 spec/xem/collision_machine_spec.rb
+spec/xem/cube_spec.rb
 spec/xem/font_manager_spec.rb
 spec/xem/helpers_spec.rb
 xem.gemspec
