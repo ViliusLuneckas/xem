@@ -13,6 +13,9 @@ xem.enable_movement
 xem.enable_console
 
 xem.enable_collisions
+xem.camera.check_collisions = true
+xem.camera.fly_mode = false
+
 cubes = 10.times.collect do 
   color = "_#{"%06d" % rand(999999)}".to_sym
   color = "_0#{rand(10)}f0#{rand(10)}ff#{rand(10)}".to_sym

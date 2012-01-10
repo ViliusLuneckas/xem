@@ -12,7 +12,10 @@ xem.lock_mouse
 xem.enable_movement
 
 xem.enable_collisions
+xem.camera.rectangle_size = 0.5
+
 cube = Cube.new(1, position: Point.new(3, 0, 4), color: :_abc0ff)
+
 
 xem.collision_machine.track(cube)
 

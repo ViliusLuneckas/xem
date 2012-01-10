@@ -11,3 +11,4 @@ xem.unlock_mouse
 xem.render do
   xem.print([:center, :center], :_ff0000, "- simple app -", 1.0)
 end
+

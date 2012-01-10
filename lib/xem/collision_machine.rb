@@ -1,7 +1,7 @@
 module Xem
   class CollisionMachine
     attr_reader :objects
-    
+
     def initialize
       @objects = []
     end
@@ -16,9 +16,9 @@ module Xem
 
     def overlapping?(a, b)
       a[:top_left][:z] < b[:bottom_right][:z] &&
-        a[:bottom_right][:z] > b[:top_left][:z] &&
-        a[:top_left][:x] > b[:bottom_right][:x] &&
-        a[:bottom_right][:x] < b[:top_left][:x]
+          a[:bottom_right][:z] > b[:top_left][:z] &&
+          a[:top_left][:x] > b[:bottom_right][:x] &&
+          a[:bottom_right][:x] < b[:top_left][:x]
     end
 
     def collided_with(object)
@@ -36,11 +36,12 @@ module Xem
 
   class Xem
     attr_reader :collision_machine
-  
+
     def enable_collisions
       settings.set(:collisions, true)
       @collision_machine ||= CollisionMachine.new
-      camera.check_collisions = true
+      camera.check_collisions = false
+      camera.fly_mode = true
     end
 
     def collided_with(object)
@@ -49,24 +50,28 @@ module Xem
   end
 
   class Camera
-    attr_accessor :rectangle_size, :check_collisions, :actor_height
+    attr_accessor :rectangle_size, :check_collisions, :actor_height, :fly_mode
 
     def rectangle
       self.rectangle_size ||= 0.1
       {
-        bottom_right: {x: position.x - rectangle_size, z: position.z + rectangle_size},
-        top_left: {x: position.x + rectangle_size, z: position.z - rectangle_size}
+          bottom_right: {x: position.x - rectangle_size, z: position.z + rectangle_size},
+          top_left: {x: position.x + rectangle_size, z: position.z - rectangle_size}
       }
     end
 
     def make_move(diff)
       if check_collisions
         @actor_height ||= 1.8
-        @position.y = actor_height
+        if fly_mode
+          @position.y += diff.y
+        else
+          @position.y = actor_height
+        end
 
         @position.x += diff.x
         @position.x -= diff.x if xem.collided_with(self).any?
-        
+
         @position.z += diff.z
         @position.z -= diff.z if xem.collided_with(self).any?
       else

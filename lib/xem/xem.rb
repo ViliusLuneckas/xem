@@ -55,6 +55,25 @@ module Xem
       ::Xem::Constants::GL_HINTS.each { |hint| glHint(hint, hints) }
     end
 
+    def set_video_mode(resolution, screen_type)
+      if resolution == :best
+        @video_mode = glfwGetVideoModes.last
+      elsif resolution == :worst
+        @video_mode = glfwGetVideoModes.first
+      else
+        @video_mode = glfwGetVideoModes.last
+        width, height = resolution.split('x')
+        @video_mode.Height = height.to_i
+        @video_mode.Width = width.to_i
+      end
+      
+      @screen_type = if screen_type == :fullscreen
+                       GLFW_FULLSCREEN
+                     else
+                       GLFW_WINDOW
+                     end
+    end
+
     protected
 
     def initialize(options = {})
@@ -78,6 +97,8 @@ module Xem
       @title = settings.set(:title, options[:title] || "Xem app")
 
       @alive = true
+
+      enable_lighting
     end
 
     def begin_rendering
@@ -86,11 +107,16 @@ module Xem
       glRotatef(camera.angle.x, 1.0, 0.0, 0.0)
       glRotatef(camera.angle.y, 0.0, 1.0, 0.0)
       glTranslated(-camera.position.x, -camera.position.y, -camera.position.z)
+      after_clear
       render_extensions
     end
 
     # method for chaining
     def render_extensions
+    end
+
+    # method for chaining calls which must be done before rendering
+    def after_clear
     end
 
     def end_rendering

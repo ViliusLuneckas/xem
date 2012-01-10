@@ -43,7 +43,7 @@ module Xem
 
 
     def render_sky
-      #sky.draw if settings.get(:sky)
+      sky.draw if settings.get(:sky)
     end
 
     chain :render_sky, :render_extensions
